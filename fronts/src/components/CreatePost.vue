@@ -60,7 +60,7 @@ const createPost = async () => {
 </script>
 
 <template>
-    <div>
+    <div class="container">
       <h2>Créer une nouvelle publication</h2>
       <form @submit.prevent="createPost">
         <div>
