@@ -2,6 +2,7 @@
 // import { RouterLink, RouterView } from 'vue-router'
 import CreatePostPage from './views/CreatePostPage.vue';
 import UserRegistrationPage from './views/UserRegistrationPage.vue';
+import SubReppit from './views/SubReppit.vue';
 </script>
 
 <template>
