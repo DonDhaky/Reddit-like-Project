@@ -14,7 +14,7 @@ const ageConfirmed = ref(false);
 const registerUser = async () => {
   try {
     // Envoie les données d'inscription au back
-    const response = await fetch('http://127.0.0.1:8000/api/users', { // A modifier
+    const response = await fetch('http://localhost:8000/api/users', { // A modifier 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
