@@ -35,7 +35,7 @@ const createPost = async () => {
     formData.append('content', postData.value.content);
     formData.append('media', mediaFile.value);
 
-    const response = await fetch('/api/posts', { // API a changer une fois créer.
+    const response = await fetch('http://127.0.0.1:8000/api/posts', { // API a confirmer.
       method: 'POST',
       body: formData
     });
