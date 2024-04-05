@@ -34,7 +34,7 @@
 
   
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const publication1 = ref({
   titre: "Première publication",
@@ -56,31 +56,20 @@ const publication2 = ref({
 
 const fetchData = async () => {
   try {
-    const username = 'votre_nom_utilisateur';
-    const password = 'votre_mot_de_passe';
-    
-
-    // API a definir!!!!!
-    const response = await fetch('https://localhost:8888/API/', {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Basic ' + btoa(username + ':' + password),
-        'Content-Type': 'application/json'
-      }
-    });
-
+    // UPDATE API quand dispo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const response = await fetch('https://localhost:8000/api/endpoint');
     if (!response.ok) {
       throw new Error('Erreur lors de la récupération des données.');
     }
-
     const data = await response.json();
-    console.log(data); // Faites quelque chose avec les données reçues de l'API
+    // Manipulez les données reçues de l'API ici
+    console.log(data);
   } catch (error) {
     console.error('Erreur:', error.message);
   }
 };
 
-fetchData(); // Appelez la fonction fetchData au chargement de la page ou lorsqu'il est approprié de récupérer les données de l'API
+onMounted(fetchData); // Appeler fetchData lorsque le composant est monté
 </script>
 
 
