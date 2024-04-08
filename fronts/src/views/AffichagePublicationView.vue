@@ -9,6 +9,6 @@ import AffichagePublication from '@/components/AffichagePublication.vue';
 import { ref } from 'vue';
 
 const publications = ref([
-  // List of publications, you can initialize it with sample data
+  // List of publications you can initialize it with sample data
 ]);
 </script>

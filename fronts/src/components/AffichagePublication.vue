@@ -4,14 +4,20 @@
       <h2>{{ publication1.titre }}</h2>
       <div v-if="publication1.type === 'image'">
         <img :src="publication1.contenu" alt="Image">
+        <div @click="goToPublication(publication.id)">
+    <!-- Contenu de la publication -->
+  </div>
       </div>
       <div v-else-if="publication1.type === 'video'">
         <video :src="publication1.contenu" controls></video>
       </div>
       <div class="interaction">
-        <span><img src="./like.svg" alt="Like"> {{ publication1.likes }}</span>
-        <span><img src="./comment.svg" alt="Commentaire"> {{ publication1.commentaires }}</span>
-        <span><img src="./share.svg" alt="Partager"> {{ publication1.partages }}</span>
+        <!-- <span @click="toggleLike(publication2)">
+          <img :src="publication2.liked ? './heart.svg' : './like.svg'" alt="Like"> {{ publication2.likes }}
+        </span> -->
+        <!-- <span><img src="./like.svg" alt="Like"> {{ publication1.likes }}</span> -->
+        <!-- <span><img src="./comment.svg" alt="Commentaire"> {{ publication1.commentaires }}</span>
+        <span><img src="./share.svg" alt="Partager"> {{ publication1.partages }}</span> -->
       </div>
     </div>
 
@@ -19,14 +25,20 @@
       <h2>{{ publication2.titre }}</h2>
       <div v-if="publication2.type === 'image'">
         <img :src="publication2.contenu" alt="Image">
+        <div @click="goToPublication(publication.id)">
+    <!-- Contenu de la publication -->
+  </div>
       </div>
       <div v-else-if="publication2.type === 'video'">
         <video :src="publication2.contenu" controls></video>
       </div>
       <div class="interaction">
-        <span><img src="./like.svg" alt="Like"> {{ publication1.likes }}</span>
-        <span><img src="./comment.svg" alt="Commentaire"> {{ publication1.commentaires }}</span>
-        <span><img src="./share.svg" alt="Partager"> {{ publication1.partages }}</span>
+        <!-- <span @click="toggleLike(publication2)">
+          <img :src="publication2.liked ? './heart.svg' : './like.svg'" alt="Like"> {{ publication2.likes }} -->
+        <!-- </span> -->
+        <!-- <span><img src="./like.svg" alt="Like"> {{ publication1.likes }}</span> -->
+        <!-- <span><img src="./comment.svg" alt="Commentaire"> {{ publication1.commentaires }}</span>
+        <span><img src="./share.svg" alt="Partager"> {{ publication1.partages }}</span> -->
       </div>
     </div>
   </div>
@@ -35,6 +47,13 @@
   
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToPublication = (id) => {
+  router.push({ name: 'AffichagePublication', params: { id } });
+};
 
 const publication1 = ref({
   titre: "Première publication",
@@ -53,6 +72,15 @@ const publication2 = ref({
   commentaires: 7,
   partages: 3
 });
+
+// const toggleLike = (publication) => {
+//   publication.liked = !publication.liked;
+//   if (publication.liked) {
+//     publication.likes++;
+//   } else {
+//     publication.likes--;
+//   }
+// };
 
 const fetchData = async () => {
   try {
@@ -98,25 +126,25 @@ onMounted(fetchData); // Appeler fetchData lorsque le composant est monté
   margin-bottom: 10px;
 }
 
-.interaction {
+/* .interaction {
   display: flex;
   align-items: center;
   margin-top: 10px;
-}
+} */
 
-.interaction span {
+/* .interaction span {
   margin-right: 10px;
   color: #666;
   font-size: 14px;
-}
+} */
 
-.interaction img {
+/* .interaction img {
   width: 20px; 
   height: 20px; 
   margin-right: 5px;
-  vertical-align: middle;
-  cursor: pointer;
-}
+  vertical-align: middle; */
+  /* cursor: pointer; */
+/* } */
 </style>
 
   
