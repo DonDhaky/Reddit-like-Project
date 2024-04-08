@@ -9,6 +9,7 @@ import NavBar from '@/views/NavBar.vue'
 <template>
      <!-- <router-view></router-view> -->
      <NavBar/>
+     <SubReppit/>
 
 </template>
 
