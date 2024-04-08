@@ -1,11 +1,20 @@
 <script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import { useRouter } from 'vue-router'
+
+const router = useRouter();
+const editNote = () => {
+    // console.log('test')
+    router.push({ name:'registration'})
+};
+
     
 </script>
 
 <template>
     <div class="leftmenu">
         <div class="login">
-                <a href="" class="btnlogin">Log In</a>
+                <button class="btnlogin" @click="editNote">Log In</button>
         </div>
         <div class="Menu">
                 <ul class="divsubreppit">
