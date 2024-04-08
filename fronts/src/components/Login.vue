@@ -9,7 +9,7 @@ const formData = ref({
 const loginUser = async () => {
   try {
     // Envoyer les données de connexion au backend
-    const response = await fetch('http://localhost:8000/api/users', {
+    const response = await fetch('http://localhost:8000/api/users', { // API a vérifier
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
