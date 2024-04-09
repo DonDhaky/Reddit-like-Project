@@ -8,7 +8,6 @@ const formData = ref({
 
 const loginUser = async () => {
   try {
-    // Envoyer les données de connexion au backend
     const response = await fetch('http://localhost:8000/api/users', { // API a vérifier
       method: 'POST',
       headers: {
@@ -21,11 +20,11 @@ const loginUser = async () => {
       throw new Error('Identifiant et/ou mot de passe incorrects.');
     }
 
-    // Redirection vers la page d'accueil avec tous les posts
     window.location.href = '/';
-  } catch (error) {
+  } 
+  
+  catch (error) {
     console.error(error);
-    // Gérer les erreurs
   }
 };
 </script>

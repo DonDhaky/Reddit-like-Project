@@ -1,24 +1,20 @@
 <script setup>
 import { ref } from 'vue';
 
-const postData = ref({
-  title: '',
-  content: ''
-});
-
+const title = ref('');
+const content = ref('');
 const mediaFile = ref(null);
 const mediaPreview = ref(null);
 const isImage = ref(false);
+
 
 const handleMediaChange = (event) => {
   const file = event.target.files[0];
   if (!file) return;
 
-  // Vérifier si le fichier est une image ou une vidéo
   const fileType = file.type.split('/')[0];
   isImage.value = fileType === 'image';
 
-  // Afficher une prévisualisation du média
   const reader = new FileReader();
   reader.onload = () => {
     mediaPreview.value = reader.result;
@@ -31,11 +27,11 @@ const handleMediaChange = (event) => {
 const createPost = async () => {
   try {
     const formData = new FormData();
-    formData.append('title', postData.value.title);
-    formData.append('content', postData.value.content);
+    formData.append('title', title.value);
+    formData.append('content', content.value);
     formData.append('media', mediaFile.value);
 
-    const response = await fetch('http://localhost:8000/api/posts', { // API a confirmer.
+    const response = await fetch('http://localhost:8000/api/posts', { // API a changer / confirmer ?
       method: 'POST',
       body: formData
     });
@@ -44,45 +40,49 @@ const createPost = async () => {
       throw new Error('Erreur lors de la création de la publication.');
     }
 
-    // Réinitialiser les champs du formulaire après la création réussie
-    postData.value.title = '';
-    postData.value.content = '';
+    title.value = '';
+    content.value = '';
     mediaFile.value = null;
     mediaPreview.value = null;
 
-    // Rediriger l'utilisateur vers une autre page ou afficher une notification de réussite
-    // Exemple : router.push('/posts');
-  } catch (error) {
+    window.location.href = '/';
+  } 
+  
+  catch (error) {
     console.error(error);
-    // Gérer les erreurs, par exemple afficher un message d'erreur à l'utilisateur
   }
 };
+
 </script>
 
 <template>
-    <div class="container">
-      <h2>Créer une nouvelle publication</h2>
-      <form @submit.prevent="createPost">
-        <div>
-          <label for="title">Titre :</label>
-          <input type="text" id="title" v-model="postData.title" required>
+  <div class ="container">
+    <h2>Créer une nouvelle publication</h2>
+    <form v-if="isLoggedIn" @submit.prevent="createPost">
+      <div>
+        <label for="title">Titre :</label>
+        <input type="text" id="title" v-model="title" required>
+      </div>
+      <div>
+        <label for="content">Contenu :</label>
+        <textarea id="content" v-model="content" rows="5" required></textarea>
+      </div>
+      <div>
+        <label for="media">Média :</label>
+        <input type="file" id="media" @change="handleMediaChange" accept="image/*, video/*">
+        <div v-if="mediaPreview">
+          <img :src="mediaPreview" v-if="isImage" alt="Aperçu de l'image">
+          <video :src="mediaPreview" v-else controls autoplay loop muted height="200"></video>
         </div>
-        <div>
-          <label for="content">Contenu :</label>
-          <textarea id="content" v-model="postData.content" rows="5" required></textarea>
-        </div>
-        <div>
-          <label for="media">Média :</label>
-          <input type="file" id="media" @change="handleMediaChange" accept="image/*, video/*">
-          <div v-if="mediaPreview">
-            <img :src="mediaPreview" v-if="isImage" alt="Aperçu de l'image">
-            <video :src="mediaPreview" v-else controls autoplay loop muted height="200"></video>
-          </div>
-        </div>
-        <button type="submit">Publier</button>
-      </form>
+      </div>
+      <button type="submit">Publier</button>
+    </form>
+    <div v-else>
+      <p>Créez un compte avant de publier</p>
+      <router-link to="/registration">S'inscrire</router-link>
     </div>
-  </template>
+  </div>
+</template>
 
 <style scoped>
 /* Conteneur principal */
@@ -93,7 +93,7 @@ const createPost = async () => {
 }
 
 /* Titre */
-h1 {
+h2 {
   text-align: center;
   color: #333;
 }
