@@ -13,8 +13,7 @@ const ageConfirmed = ref(false);
 
 const registerUser = async () => {
   try {
-    // Envoie les données d'inscription au back
-    const response = await fetch('http://127.0.0.1:8000/api/users', { // A modifier
+    const response = await fetch('http://localhost:8000/api/users', { // A modifier 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -29,17 +28,18 @@ const registerUser = async () => {
       throw new Error('Erreur lors de l\'inscription.');
     }
 
-    // Redirection vers page "mon compte"
-  } catch (error) {
+    window.location.href = '/my-account';
+  } 
+  
+  catch (error) {
     console.error(error);
-    // Gérer les erreurs
   }
 };
 </script>
 
 <template>
     <div class="container">
-     <h2>Créer un compte utilisateur</h2>
+      <h2>Créer un compte utilisateur</h2>
       <form @submit.prevent="registerUser" class="form">
         <label for="name">Nom :</label>
         <input type="text" id="name" v-model="formData.name" required class="input-field">
@@ -71,7 +71,7 @@ const registerUser = async () => {
     padding: 20px;
   }
 
-  h1 {
+  h2 {
   text-align: center;
   color: #333;
   }
