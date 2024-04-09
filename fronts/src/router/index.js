@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CreatePostPage from '@/views/CreatePostPage.vue'
 import UserRegistrationPage from '@/views/UserRegistrationPage.vue'
-// import SubReppit from '@/views/SubReppit.vue'
 import Navbar from '@/views/NavBar.vue'
 
 const router = createRouter({
@@ -10,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Navbar
+      component: Navbar,
     },
 
     {

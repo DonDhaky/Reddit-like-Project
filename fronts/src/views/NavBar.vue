@@ -6,7 +6,7 @@
     <div class="navbar">
         <div class="title">
             <a href="#">
-                <img src="../../public/reddit-1.svg" alt="Reppit Icon">
+                <img src="/reddit-1.svg" alt="Reppit Icon">
             </a>
         </div>
         <div class="searchbar">
