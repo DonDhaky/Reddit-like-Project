@@ -7,8 +7,8 @@ import AffichagePublicationView from "./AffichagePublicationView.vue";
 
 <template>
     <NavBar/>
-    <SubReppit/>
     <AffichagePublicationView/>
+    <SubReppit/>
 </template>
 
 <style scoped>
