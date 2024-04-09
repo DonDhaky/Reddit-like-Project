@@ -1,13 +1,13 @@
 <template>
   <div class="publication">
     <h2>{{ props.publication.titre }}</h2>
-    <div v-if="props.publication.type === 'image'">
+    <div class="containervi" v-if="props.publication.type === 'image'">
       <img :src="props.publication.contenu" alt="Image">
       <div @click="goToPublication(props.publication.id)">
         <!-- Contenu de la publication -->
       </div>
     </div>
-    <div v-else-if="props.publication.type === 'video'">
+    <div class="containervi" v-else-if="props.publication.type === 'video'">
       <video :src="props.publication.contenu" controls></video>
     </div>
     <div class="interaction">
@@ -61,7 +61,6 @@ const goToPublication = (id) => {
 
 
 .publication {
-  display: flex;
   background-color: #ffffff;
   border: 1px solid #d7dadc;
   border-radius: 8px;
@@ -69,13 +68,36 @@ const goToPublication = (id) => {
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins';
+  width: 80%;
+  float: right;
+  transition: 0.2s;
 }
 
+.publication:hover{
+  background-color: #f8f8f8;
+  border: 2px solid #d7dadc;
+}
 
 .publication h2 {
+  display: flex;
+  justify-content: center;
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 18px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.publication h2:hover {
+  text-decoration: underline;
+  font-weight: 600;
+  color: #FF4500;
+}
+
+.containervi{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .publication img,
