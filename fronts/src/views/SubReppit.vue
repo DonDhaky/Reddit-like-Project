@@ -114,6 +114,7 @@ const editNote = () => {
     align-items: center;
     margin-top: 100vh;
     height: 20%;
+    font-family: 'Poppins';
 }
 
 .subMenu > div{
