@@ -11,11 +11,7 @@ class Post extends Model
         'content', 
         'media_path', 
         'subrep_id', 
+        'user_id',
         'likes',
     ];
-
-    public function subreppit()
-    {
-        return $this->belongsTo(Subreppit::class, 'subrep_id');
-    }
 }
