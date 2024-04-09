@@ -1,10 +1,13 @@
 <script setup>
 // import { RouterLink, RouterView } from 'vue-router'
-import AffichagePublication from './components/AffichagePublication.vue';   
+// import CreatePostPage from './views/CreatePostPage.vue';
+// import UserRegistrationPage from './views/UserRegistrationPage.vue';
+// import SubReppit from './views/SubReppit.vue';
+// import NavBar from '@/views/NavBar.vue'
 </script>
 
 <template>
-    <AffichagePublication/>
+     <router-view></router-view>
 </template>
 
 <style scoped>
