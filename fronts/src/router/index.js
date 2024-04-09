@@ -6,6 +6,7 @@ import UserRegistrationPage from '@/views/UserRegistrationPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import UserAccountPage from '@/views/UserAccountPage.vue'
 import Navbar from '@/views/NavBar.vue'
+import HomePage from '@/views/HomePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +14,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Navbar,
+      component: HomePage,
 
     },
     {

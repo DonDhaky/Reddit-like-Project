@@ -1,77 +1,31 @@
 <template>
-  <div>
-    <div class="publication">
-      <h2>{{ publication1.titre }}</h2>
-      <div v-if="publication1.type === 'image'">
-        <img :src="publication1.contenu" alt="Image">
-        <div @click="goToPublication(publication.id)">
-    <!-- Contenu de la publication -->
-  </div>
-      </div>
-      <div v-else-if="publication1.type === 'video'">
-        <video :src="publication1.contenu" controls></video>
-      </div>
-      <div class="interaction">
-        <!-- <span @click="toggleLike(publication2)">
-          <img :src="publication2.liked ? './heart.svg' : './like.svg'" alt="Like"> {{ publication2.likes }}
-        </span> -->
-        <!-- <span><img src="./like.svg" alt="Like"> {{ publication1.likes }}</span> -->
-        <!-- <span><img src="./comment.svg" alt="Commentaire"> {{ publication1.commentaires }}</span>
-        <span><img src="./share.svg" alt="Partager"> {{ publication1.partages }}</span> -->
+  <div class="publication">
+    <h2>{{ props.publication.titre }}</h2>
+    <div v-if="props.publication.type === 'image'">
+      <img :src="props.publication.contenu" alt="Image">
+      <div @click="goToPublication(props.publication.id)">
+        <!-- Contenu de la publication -->
       </div>
     </div>
-
-    <div class="publication">
-      <h2>{{ publication2.titre }}</h2>
-      <div v-if="publication2.type === 'image'">
-        <img :src="publication2.contenu" alt="Image">
-        <div @click="goToPublication(publication.id)">
-    <!-- Contenu de la publication -->
-  </div>
-      </div>
-      <div v-else-if="publication2.type === 'video'">
-        <video :src="publication2.contenu" controls></video>
-      </div>
-      <div class="interaction">
-        <!-- <span @click="toggleLike(publication2)">
-          <img :src="publication2.liked ? './heart.svg' : './like.svg'" alt="Like"> {{ publication2.likes }} -->
-        <!-- </span> -->
-        <!-- <span><img src="./like.svg" alt="Like"> {{ publication1.likes }}</span> -->
-        <!-- <span><img src="./comment.svg" alt="Commentaire"> {{ publication1.commentaires }}</span>
-        <span><img src="./share.svg" alt="Partager"> {{ publication1.partages }}</span> -->
-      </div>
+    <div v-else-if="props.publication.type === 'video'">
+      <video :src="props.publication.contenu" controls></video>
+    </div>
+    <div class="interaction">
+      <!-- Add your interaction elements here -->
     </div>
   </div>
 </template>
 
   
 <script setup>
-import { ref, onMounted } from "vue";
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const props = defineProps(['publication']);
 
 const goToPublication = (id) => {
   router.push({ name: 'AffichagePublication', params: { id } });
 };
-
-const publication1 = ref({
-  titre: "Première publication",
-  contenu: "lien vers l'image ou la vidéo",
-  type: "image", // ou "video",
-  likes: 10,
-  commentaires: 5,
-  partages: 2
-});
-
-const publication2 = ref({
-  titre: "Deuxième publication",
-  contenu: "lien vers l'image ou la vidéo",
-  type: "video", // ou "image",
-  likes: 15,
-  commentaires: 7,
-  partages: 3
-});
 
 // const toggleLike = (publication) => {
 //   publication.liked = !publication.liked;
@@ -82,22 +36,22 @@ const publication2 = ref({
 //   }
 // };
 
-const fetchData = async () => {
-  try {
-    // UPDATE API quand dispo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    const response = await fetch('https://localhost:8000/api/endpoint');
-    if (!response.ok) {
-      throw new Error('Erreur lors de la récupération des données.');
-    }
-    const data = await response.json();
-    // Manipulez les données reçues de l'API ici
-    console.log(data);
-  } catch (error) {
-    console.error('Erreur:', error.message);
-  }
-};
+// const fetchData = async () => {
+//   try {
+//     // UPDATE API quand dispo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//     const response = await fetch('https://localhost:8000/api/endpoint');
+//     if (!response.ok) {
+//       throw new Error('Erreur lors de la récupération des données.');
+//     }
+//     const data = await response.json();
+//     // Manipulez les données reçues de l'API ici
+//     console.log(data);
+//   } catch (error) {
+//     console.error('Erreur:', error.message);
+//   }
+// };
 
-onMounted(fetchData); // Appeler fetchData lorsque le composant est monté
+// onMounted(fetchData); // Appeler fetchData lorsque le composant est monté
 </script>
 
 
