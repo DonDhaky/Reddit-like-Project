@@ -1,5 +1,6 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
+import AffichagePublicationView from '@/views/AffichagePublicationView.vue'
 import CreatePostPage from '@/views/CreatePostPage.vue'
 import UserRegistrationPage from '@/views/UserRegistrationPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
@@ -12,17 +13,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      component: Navbar,
 
     },
     {
       path: '/affichage/:id',
       name: "AffichagePublication",
       component: AffichagePublicationView
-    }
-
-      component: Navbar,
     },
-
     {
       path: '/create-post',
       component: CreatePostPage
