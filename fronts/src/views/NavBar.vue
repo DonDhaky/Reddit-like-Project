@@ -11,7 +11,7 @@
         </div>
         <div class="searchbar">
             <form action="" class="search-bar">
-                <input class="search" type="search" name="search" required placeholder="Subreppit">
+                <input class="search" type="search" name="search" required placeholder="Subreppit" v-model="input">
                 <button class="search-btn" type="submit"><span>Search</span></button>
             </form>
         </div>

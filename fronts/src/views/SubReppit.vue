@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 
 const router = useRouter();
 const editNote = () => {
@@ -7,19 +8,30 @@ const editNote = () => {
     router.push({ name:'registration'})
 };
 
-    
+const subreppits = ref([
+  {
+    id: 1,
+    titre: "Funny",
+  },
+  {
+    id: 2,
+    titre: "Gaming",
+  },
+  {
+    id: 3,
+    titre: "Bridou",
+  }
+]);
 </script>
 
 <template>
     <div class="leftmenu">
         <div class="login">
-                <button class="btnlogin" @click="editNote">Log In</button>
+                <button class="btnlogin" @click="editNote">Register</button>
         </div>
         <div class="Menu">
                 <ul class="divsubreppit">
-                    <li class="subreppit">Gaming</li>
-                    <li class="subreppit">Funny</li>
-                    <li class="subreppit">Series</li>
+                    <li class="subreppit" v-for="subreppit in subreppits" :key="subreppit.id">{{ subreppit.titre }}</li>
                 </ul>
         </div>
         <div class="subMenu">
