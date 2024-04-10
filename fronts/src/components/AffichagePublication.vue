@@ -1,57 +1,68 @@
 <template>
-  <div class="publication">
-    <h2>{{ props.publication.titre }}</h2>
-    <div class="containervi" v-if="props.publication.type === 'image'">
-      <img :src="props.publication.contenu" alt="Image">
-      <div @click="goToPublication(props.publication.id)">
-        <!-- Contenu de la publication -->
+  <div v-if="loading">
+    Loading...
+  </div>
+  <div v-else>
+    <div class="publication" v-for="publication in publications" :key="publication.id">
+      <h2>{{ publication.title }}</h2>
+      <div class="containervi" v-if="publication.media_path">
+        <img v-if="publication.media_path.includes('.jpg') || publication.media_path.includes('.png') || publication.media_path.includes('.webp')" :src="publication.media_path" alt="Image">
+        <video v-else controls :src="publication.media_path">
+          Your browser does not support the video tag.
+        </video>
+        <div @click="goToPublication(publication.id)">
+          <!-- Contenu de la publication -->
+        </div>
       </div>
-    </div>
-    <div class="containervi" v-else-if="props.publication.type === 'video'">
-      <video :src="props.publication.contenu" controls></video>
-    </div>
-    <div class="interaction">
-      <!-- Add your interaction elements here -->
+      <div class="interaction">
+        <!-- Add your interaction elements here -->
+      </div>
     </div>
   </div>
 </template>
 
   
 <script setup>
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const props = defineProps(['publication']);
+const publications = ref([]);
+const loading = ref(true);
+// const props = defineProps(['publication']);
 
 const goToPublication = (id) => {
   router.push({ name: 'AffichagePublication', params: { id } });
 };
 
+async function fetchData() {
+  const response1 = await fetch('http://127.0.0.1:8000/api/posts');
+  const data = await response1.json();
+  publications.value = data;
+  loading.value = false;
+};
+onMounted(() => {
+  fetchData();
+});
+
+// async function fetchUrl() {
+//   const response1 = await fetch('http://127.0.0.1:8000/api/posts');
+//   const data = await response1.json();
+//   publications.value = data;
+//   loading.value = false;
+//   // console.log(data);
+// };
+// onMounted(() => {
+//   fetchData();
+// });
 // const toggleLike = (publication) => {
 //   publication.liked = !publication.liked;
 //   if (publication.liked) {
 //     publication.likes++;
 //   } else {
-//     publication.likes--;
+//     publication.likes--;²
 //   }
 // };
-
-// const fetchData = async () => {
-//   try {
-//     // UPDATE API quand dispo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//     const response = await fetch('https://localhost:8000/api/endpoint');
-//     if (!response.ok) {
-//       throw new Error('Erreur lors de la récupération des données.');
-//     }
-//     const data = await response.json();
-//     // Manipulez les données reçues de l'API ici
-//     console.log(data);
-//   } catch (error) {
-//     console.error('Erreur:', error.message);
-//   }
-// };
-
-// onMounted(fetchData); // Appeler fetchData lorsque le composant est monté
 </script>
 
 
