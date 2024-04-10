@@ -16,9 +16,13 @@ use App\Http\Controllers\DataController;
 */
 
 Route::get('/users', [DataController::class, 'getDataFromUsers']);
+Route::get('/profile/{id}', [DataController::class, 'getDataFromUserId']);
 Route::get('/subreppits', [DataController::class, 'getDataFromSubreppits']);
+Route::get('/subreppit/{id}', [DataController::class, 'getDataFromSubreppitId']);
 Route::get('/posts', [DataController::class, 'getDataFromPosts']);
+Route::get('/post/{id}', [DataController::class, 'getDataFromPostId']);
 Route::get('/comments', [DataController::class, 'getDataFromComments']);
+Route::get('/comment/{id}', [DataController::class, 'getDataFromCommentId']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
