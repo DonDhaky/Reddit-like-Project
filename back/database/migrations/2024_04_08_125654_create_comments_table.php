@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subreppits', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->string('media_path')->nullable();
+            $table->text('content');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('post_id')->unsigned();
+            $table->bigInteger('parentcomment_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subreppits');
+        Schema::dropIfExists('comments');
     }
 };
