@@ -9,7 +9,10 @@ const editing = ref(false);
 const fetchUserProfile = async () => {
   loading.value = true;
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/profile', { // API a modifier
+
+    const userId = localStorage.getItem('userId');
+
+    const response = await fetch(`http://127.0.0.1:8000/api/user/${userId}`, { // API a modifier
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +33,7 @@ const fetchUserProfile = async () => {
 
 const updateProfile = async () => {
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/profile', { // API a modifier
+    const response = await fetch(`http://127.0.0.1:8000/api/user/${user.value.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -58,7 +61,7 @@ const cancelEdit = () => {
 const deleteAccount = async () => {
   if (confirm("Etes-vous sûr de vouloir supprimer votre compte ?")) {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/profile', { // API a modifier
+      const response = await fetch(`http://127.0.0.1:8000/api/user/${user.value.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
