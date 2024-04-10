@@ -7,6 +7,7 @@ import LoginPage from '@/views/LoginPage.vue'
 import UserAccountPage from '@/views/UserAccountPage.vue'
 import Navbar from '@/views/NavBar.vue'
 import HomePage from '@/views/HomePage.vue'
+import PublicationDetails from '@/components/PublicationDetails.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,7 +21,7 @@ const router = createRouter({
     {
       path: '/affichage/:id',
       name: "AffichagePublication",
-      component: AffichagePublicationView
+      component: PublicationDetails
     },
     {
       path: '/create-post',

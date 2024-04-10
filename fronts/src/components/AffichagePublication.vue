@@ -1,17 +1,17 @@
 <template>
   <div class="publication">
+    <div @click="goToPublication(props.publication.id)">
+
     <h2>{{ props.publication.titre }}</h2>
     <div class="containervi" v-if="props.publication.type === 'image'">
       <img :src="props.publication.contenu" alt="Image">
-      <div @click="goToPublication(props.publication.id)">
-        <!-- Contenu de la publication -->
-      </div>
     </div>
     <div class="containervi" v-else-if="props.publication.type === 'video'">
       <video :src="props.publication.contenu" controls></video>
     </div>
     <div class="interaction">
       <!-- Add your interaction elements here -->
+    </div>
     </div>
   </div>
 </template>
@@ -21,9 +21,10 @@
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const props = defineProps(['publication']);
+  const props = defineProps(['publication']);
 
 const goToPublication = (id) => {
+  console.log(id);
   router.push({ name: 'AffichagePublication', params: { id } });
 };
 
