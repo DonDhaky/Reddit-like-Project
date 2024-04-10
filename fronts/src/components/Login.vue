@@ -8,7 +8,7 @@ const formData = ref({
 
 const loginUser = async () => {
   try {
-    const response = await fetch('http://localhost:8000/api/users', { // API a vérifier
+    const response = await fetch('http://127.0.0.1:8000/api/auth/login', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -20,10 +20,38 @@ const loginUser = async () => {
       throw new Error('Identifiant et/ou mot de passe incorrects.');
     }
 
+    const { token } = await response.json();
+    document.cookie = `token=${token};path=/`;
+
+
     window.location.href = '/';
   } 
   
   catch (error) {
+    console.error(error);
+  }
+};
+
+const logoutUser = async () => {
+  try {
+    document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
+
+    const response = await fetch('http://127.0.0.1:8000/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur lors de la déconnexion.');
+    }
+
+    window.location.href = '/login';
+  } 
+  
+  catch (error) 
+  {
     console.error(error);
   }
 };
