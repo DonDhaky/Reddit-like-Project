@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Post;
 
 class DataController extends Controller
 {
-    public function getDataFromUsers()
+    public function getDataFromPosts()
     {
-        $users = User::all();
-        //var_dump($users);
+        $posts = Post::all();
+        //var_dump($posts);
         //echo ' // ';
-        //$obj = ['users' => [['id' => 1, 'name' => 'John Doe'],['id' => 2, 'name' => 'Jane Doe'],]];
-        return response()->json($users);
+        //$obj = ['posts' => [['id' => 1, 'name' => 'John Doe'],['id' => 2, 'name' => 'Jane Doe'],]];
+        return response()->json($posts);
     }
 }
