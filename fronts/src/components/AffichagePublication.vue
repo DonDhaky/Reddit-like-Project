@@ -13,6 +13,7 @@
       </video>
 
     </div>
+        <p class="publication-date"> {{ publication.created_at }}</p>
       <div class="interaction">
         <!-- Add your interaction elements here -->
       </div>
@@ -24,6 +25,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+
 
 const router = useRouter();
 
