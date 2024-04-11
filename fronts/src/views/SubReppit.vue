@@ -22,6 +22,16 @@ const subreppits = ref([
     titre: "Bridou",
   }
 ]);
+
+// const apiUrl = "http://localhost/api";
+
+// async function reppits() {
+//     const response = await fetch(apiUrl);
+//     const subreppits = await response.json();
+//     console.log(subreppits);
+// };
+// reppits();
+
 </script>
 
 <template>
