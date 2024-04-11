@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="loading">
     Loading...
   </div>
@@ -10,10 +11,12 @@
         <video v-else controls :src="publication.media_path">
         Your browser does not support the video tag.
       </video>
+
     </div>
       <div class="interaction">
         <!-- Add your interaction elements here -->
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -24,11 +27,14 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+
 const publications = ref([]);
 const loading = ref(true);
 // const props = defineProps(['publication']);
 
+
 const goToPublication = (id) => {
+  console.log(id);
   router.push({ name: 'AffichagePublication', params: { id } });
 };
 

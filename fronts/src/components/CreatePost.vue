@@ -6,32 +6,31 @@ const content = ref('');
 const mediaFile = ref(null);
 const mediaPreview = ref(null);
 const isImage = ref(false);
+const isLoggedIn = ref(false);
 
 
 const handleMediaChange = (event) => {
   const file = event.target.files[0];
   if (!file) return;
 
-  const fileType = file.type.split('/')[0];
-  isImage.value = fileType === 'image';
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    mediaPreview.value = reader.result;
-  };
-  reader.readAsDataURL(file);
-
   mediaFile.value = file;
 };
 
+
 const createPost = async () => {
   try {
+
+    if (!isLoggedIn.value) {
+      window.location.href = '/login';
+      return;
+    }
+
     const formData = new FormData();
     formData.append('title', title.value);
     formData.append('content', content.value);
     formData.append('media', mediaFile.value);
 
-    const response = await fetch('http://localhost:8000/api/posts', { // API a changer / confirmer ?
+    const response = await fetch('http://127.0.0.1:8000/api/posts', { // API a changer / confirmer ?
       method: 'POST',
       body: formData
     });
@@ -48,7 +47,8 @@ const createPost = async () => {
     window.location.href = '/';
   } 
   
-  catch (error) {
+  catch (error) 
+  {
     console.error(error);
   }
 };
@@ -58,7 +58,7 @@ const createPost = async () => {
 <template>
   <div class ="container">
     <h2>Créer une nouvelle publication</h2>
-    <form v-if="isLoggedIn" @submit.prevent="createPost">
+    <form @submit.prevent="createPost">
       <div>
         <label for="title">Titre :</label>
         <input type="text" id="title" v-model="title" required>
@@ -77,39 +77,34 @@ const createPost = async () => {
       </div>
       <button type="submit">Publier</button>
     </form>
-    <div v-else>
-      <p>Créez un compte avant de publier</p>
-      <router-link to="/registration">S'inscrire</router-link>
-    </div>
+    <div v-if="!isLoggedIn">
+      <p>Connectez-vous pour pouvoir créer un post.</p>
+      <router-link to="/login">Se connecter</router-link>
+    </div>    
   </div>
 </template>
 
 <style scoped>
-/* Conteneur principal */
 .container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Titre */
 h2 {
   text-align: center;
   color: #333;
 }
 
-/* Formulaire */
 form {
   margin-top: 20px;
 }
 
-/* Labels */
 label {
   display: block;
   margin-bottom: 5px;
 }
 
-/* Champs de saisie */
 input[type="text"],
 textarea {
   width: 100%;
@@ -120,12 +115,10 @@ textarea {
   box-sizing: border-box;
 }
 
-/* Champ de téléchargement de fichier */
 input[type="file"] {
   margin-top: 5px;
 }
 
-/* Bouton de soumission */
 button[type="submit"] {
   display: block;
   width: 100%;
@@ -137,7 +130,6 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-/* Prévisualisation du média */
 .media-preview {
   margin-top: 10px;
   text-align: center;
