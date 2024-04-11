@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,6 +32,7 @@ Route::get('/comments', [DataController::class, 'getDataFromComments']);
 Route::get('/comment/{id}', [DataController::class, 'getDataFromCommentId']);
 Route::post('/addcomment', [DataController::class, 'addComment']);
 Route::delete('/deletecomment/{id}', [DataController::class, 'deleteComment']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
