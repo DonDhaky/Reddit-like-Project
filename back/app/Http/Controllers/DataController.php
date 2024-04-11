@@ -11,16 +11,6 @@ use App\Models\Comment;
 
 class DataController extends Controller
 {
-  
-    public function getDataFromComments() {
-        $comments = Comment::all();
-        return response()->json($comments);
-    }
-
-    public function getDataFromCommentId($comment_id) {
-        $comment = Comment::find($comment_id);
-        return response()->json($comment);
-    }
 
     // USER
     public function addUser(Request $rq) {
@@ -77,17 +67,6 @@ class DataController extends Controller
         $subreppit->delete();
         return response()->json(['message' => 'Subreppit deleted']);
     }
-
-    public function getDataFromSubreppits() {
-        $subreppits = Subreppit::all();
-        return response()->json($subreppits);
-    }
-
-    public function getDataFromSubreppitId($subreppit_id) {
-        $subreppit = Subreppit::find($subreppit_id);
-        return response()->json($subreppit);
-    }
-
 
     // POSTS
     public function getDataFromPosts() {

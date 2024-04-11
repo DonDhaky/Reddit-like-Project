@@ -16,18 +16,25 @@ use App\Http\Controllers\DataController;
 |
 */
 
+// USERS
 Route::get('/users', [DataController::class, 'getDataFromUsers']);
 Route::get('/user/{id}', [DataController::class, 'getDataFromUserId']);
 Route::post('/adduser', [DataController::class, 'addUser']);
 Route::delete('/deleteuser/{id}', [DataController::class, 'deleteUser']);
+
+// SUBREPPITS
 Route::get('/subreppits', [DataController::class, 'getDataFromSubreppits']);
 Route::get('/subreppit/{id}', [DataController::class, 'getDataFromSubreppitId']);
 Route::post('/addsubreppit', [DataController::class, 'addSubreppit']);
 Route::delete('/deletesubreppit/{id}', [DataController::class, 'deleteSubreppit']);
+
+// POSTS
 Route::get('/posts', [DataController::class, 'getDataFromPosts']);
 Route::get('/post/{id}', [DataController::class, 'getDataFromPostId']);
 Route::post('/addpost', [DataController::class, 'addPost']);
 Route::delete('/deletepost/{id}', [DataController::class, 'deletePost']);
+
+// COMMENTS
 Route::get('/comments', [DataController::class, 'getDataFromComments']);
 Route::get('/comment/{id}', [DataController::class, 'getDataFromCommentId']);
 Route::post('/addcomment', [DataController::class, 'addComment']);
