@@ -28,7 +28,8 @@ const registerUser = async () => {
       throw new Error("Erreur lors de l'inscription.");
     }
     
-    console.log('Utilisateur inscrit avec succès')
+    console.log('Utilisateur inscrit avec succès');
+    confirm('Vous vous êtes bien inscrit sur Reppit !');
     window.location.href = 'http://localhost:5173/';
   } 
   

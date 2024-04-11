@@ -1,18 +1,34 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
+const token = ref(null);
+
+onMounted(() => {
+  const cookies = document.cookie.split(';')
+  cookies.forEach((cookie) => {
+    const [name, value] = cookie.split('=')
+    if (name.trim() === 'token') {
+      token.value = value
+    }
+  })
+});
 
 const router = useRouter();
 const editNote = () => {
-    // console.log('test')
     router.push({ name:'registration'})
 };
 const loginFunction = () => {
-    // console.log('test')
     router.push({ name:'login'})
 };
+const goProfile = () => {
+    router.push({ name:'myaccount'})
+};
 const logoutFunction = () => {
-    // RUN UNE FONCTION POUR TUER COOKIE
+  
+    document.cookie = `token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+    confirm('Vous êtes bien déconnecté(e) !');
+    window.location.href = 'http://localhost:5173/';
 };
 
 const subreppits = ref([
@@ -44,9 +60,10 @@ const subreppits = ref([
 <template>
     <div class="leftmenu">
         <div class="login">
-                <button class="btnlogin" @click="editNote">Register</button>
-                <button class="btnlogin" @click="loginFunction">Login</button>
-                <button class="btnlogin" @click="logoutFunction">Logout</button>
+                <button v-if="!token" class="btnlogin" @click="editNote">Register</button>
+                <button v-if="!token" class="btnlogin" @click="loginFunction">Login</button>
+                <button v-if="token" class="btnlogin" @click="logoutFunction">Logout</button>
+                <button v-if="token" class="btnlogin" @click="goProfile">Profile</button>
         </div>
         <div class="Menu">
                 <ul class="divsubreppit">

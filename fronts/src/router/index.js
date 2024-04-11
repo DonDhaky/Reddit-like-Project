@@ -42,6 +42,7 @@ const router = createRouter({
 
     {
       path: '/my-account',
+      name: 'myaccount',
       component: UserAccountPage
     }
 
