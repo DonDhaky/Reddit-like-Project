@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text('content');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('post_id')->unsigned();
-            $table->bigInteger('parentcomment_id')->unsigned();
+            $table->string('childrencomments_id')->nullable();
+            $table->bigInteger('parentcomment_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
