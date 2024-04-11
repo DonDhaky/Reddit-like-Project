@@ -1,9 +1,5 @@
 <template>
-
-  <div v-if="loading">
-    Loading...
-  </div>
-  <div v-else>
+  <div class="publication-container">
     <div class="publication" v-for="publication in publications" :key="publication.id" @click="goToPublication(publication.id)">
       <h2>{{ publication.title }}</h2>
       <div class="containervi" v-if="publication.media_path">
@@ -11,10 +7,6 @@
         <video v-else controls :src="publication.media_path">
         Your browser does not support the video tag.
       </video>
-
-    </div>
-      <div class="interaction">
-        <!-- Add your interaction elements here -->
       </div>
     </div>
   </div>
@@ -47,24 +39,6 @@ onMounted(() => {
   fetchData();
 });
 
-// async function fetchUrl() {
-//   const response1 = await fetch('http://127.0.0.1:8000/api/posts');
-//   const data = await response1.json();
-//   publications.value = data;
-//   loading.value = false;
-//   // console.log(data);
-// };
-// onMounted(() => {
-//   fetchData();
-// });
-// const toggleLike = (publication) => {
-//   publication.liked = !publication.liked;
-//   if (publication.liked) {
-//     publication.likes++;
-//   } else {
-//     publication.likes--;²
-//   }
-// };
 </script>
 
 
@@ -72,6 +46,13 @@ onMounted(() => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+.publication-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .publication {
   background-color: #ffffff;
@@ -81,9 +62,9 @@ onMounted(() => {
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins';
-  width: 80%;
-  float: right;
+  width: 60%;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .publication:hover{
