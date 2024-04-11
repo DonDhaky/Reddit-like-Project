@@ -72,12 +72,10 @@ const subreppits = ref([
 
 .leftmenu{
     width: 200px;
+    position: relative;
     
 }
 .login{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -131,10 +129,12 @@ const subreppits = ref([
 }
 
 .subMenu{
+    position: absolute;
+    margin-top: 100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100vh;
     height: 20%;
     font-family: 'Poppins';
 }
@@ -142,15 +142,38 @@ const subreppits = ref([
 .subMenu > div{
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 5px auto;
+    width: 80%;
+    padding: 0;
+    background-color: #FAFAFA;
+    border: solid 1px #808080;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0.2px rgba(64, 64, 64, 0.78)
 }
 
 .subMenu > div svg{
-    margin-right: 10px;
+    margin: 10px;
 }
 
 .subMenu > div a{
     text-decoration: none;
     color: black;
+    text-decoration: none;
+    list-style-type: none;
+    text-align: center;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    background-color: #B8B8B8;
+    border: solid 1px #808080;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+.subMenu > div a:hover{
+    background-color: #FF4500;
+    color: #FAFAFA;
+    cursor: pointer;
 }
 </style>
