@@ -3,17 +3,14 @@
     Loading...
   </div>
   <div v-else>
-    <div class="publication" v-for="publication in publications" :key="publication.id">
+    <div class="publication" v-for="publication in publications" :key="publication.id" @click="goToPublication(publication.id)">
       <h2>{{ publication.title }}</h2>
       <div class="containervi" v-if="publication.media_path">
         <img v-if="publication.media_path.includes('.jpg') || publication.media_path.includes('.png') || publication.media_path.includes('.webp')" :src="publication.media_path" alt="Image">
         <video v-else controls :src="publication.media_path">
-          Your browser does not support the video tag.
-        </video>
-        <div @click="goToPublication(publication.id)">
-          <!-- Contenu de la publication -->
-        </div>
-      </div>
+        Your browser does not support the video tag.
+      </video>
+    </div>
       <div class="interaction">
         <!-- Add your interaction elements here -->
       </div>
