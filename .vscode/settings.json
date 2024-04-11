@@ -1,0 +1,16 @@
+{
+    "favorites.resources": [
+        {
+            "filePath": "back/app/Http/Controllers/DataController.php",
+            "group": "Default"
+        },
+        {
+            "filePath": "back/routes/api.php",
+            "group": "Default"
+        },
+        {
+            "filePath": "front/src/views/HomeView.vue",
+            "group": "Default"
+        }
+    ]
+}
