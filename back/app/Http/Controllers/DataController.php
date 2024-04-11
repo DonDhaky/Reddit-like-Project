@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\User;
 use App\Models\Subreppit;
 use App\Models\Post;
@@ -154,4 +155,5 @@ class DataController extends Controller
         $comment->delete();
         return response()->json(['message' => 'Comment deleted']);
     }
+
 }

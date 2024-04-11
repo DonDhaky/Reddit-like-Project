@@ -16,7 +16,9 @@ class Comment extends Model
         'content',
         'user_id',
         'post_id',
+
         'childrencomments_ids',
+
         'parentcomment_id',
     ];
 }
