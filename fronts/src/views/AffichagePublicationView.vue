@@ -8,6 +8,7 @@
 import AffichagePublication from '@/components/AffichagePublication.vue';
 import { ref } from 'vue';
 
+
 const publications = ref([
   {
     id: 1,
@@ -20,7 +21,7 @@ const publications = ref([
   },
   {
     id: 2,
-    titre: "Troisième Publication",
+    titre: "Deuxieme Publication",
     contenu: "lien vers l'image ou la vidéo",
     type: "video",
     likes: 15,
