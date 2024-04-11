@@ -7,6 +7,11 @@
         <video v-else controls :src="publication.media_path">
         Your browser does not support the video tag.
       </video>
+    </div>
+        <p class="publication-date"> {{ publication.created_at }}</p>
+      <div class="interaction">
+        <!-- Add your interaction elements here -->
+
       </div>
     </div>
   </div>
@@ -15,6 +20,7 @@
   
 <script setup>
 import { useRouter } from 'vue-router';
+
 
 const router = useRouter();
 defineProps(['publications']);
