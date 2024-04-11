@@ -208,71 +208,98 @@ const formDeleteCommentSubmission = (async (comment_id) => {
 <template>
     <div id="container">
         <div class="div">
+            USER<br>
             <button @click="fetchUsers">fetchUsers</button>
-            <button @click="fetchProfile2">fetchProfile2</button>
-        </div>
-        <div class="div">
+            <button @click="fetchProfile2">fetchProfile2</button><br>
+            (résultats console)
+            <p></p>
             <form @submit.prevent="formUserSubmission">
-              <input type="text" v-model="formUser.name">
-              <input type="text" v-model="formUser.login">
-              <input type="text" v-model="formUser.email">
-              <input type="text" v-model="formUser.password">
-              <input type="text" v-model="formUser.password_confirmation">
-              <input type="text" v-model="formUser.age">
-              <input type="text" v-model="formUser.is_admin">
-              <button type="submit">AddUser</button>
+                <label>name</label><br>
+                <input type="text" v-model="formUser.name"><br>
+                <label>login</label><br>
+                <input type="text" v-model="formUser.login"><br>
+                <label>email</label><br>
+                <input type="text" v-model="formUser.email"><br>
+                <label>password</label><br>
+                <input type="text" v-model="formUser.password"><br>
+                <label>password_confirmation</label><br>
+                <input type="text" v-model="formUser.password_confirmation"><br>
+                <label>age</label><br>
+                <input type="text" v-model="formUser.age"><br>
+                <label>is_admin</label><br>
+                <input type="text" v-model="formUser.is_admin"><br>
+                <button type="submit">AddUser</button><br><br>
             </form>
             <form @submit.prevent="formDeleteUserSubmission(formDeleteUser.user_id)">
-              <input type="number" v-model="formDeleteUser.user_id">
-              <button type="submit">DeleteUser</button>
+                <label>user_id</label><br>
+                <input type="number" v-model="formDeleteUser.user_id"><br>
+                <button type="submit">DeleteUser</button>
             </form>
         </div>
         <div class="div">
+            SUBREPPITS<br>
             <button @click="fetchSubreppits">fetchSubreppits</button>
-            <button @click="fetchSubreppit3">fetchSubreppit3</button>
-        </div>
-        <div class="div">
+            <button @click="fetchSubreppit3">fetchSubreppit3</button><br>
+            (résultats console)
+            <p></p>
             <form @submit.prevent="formSubreppitSubmission">
-              <input type="text" v-model="formSubreppit.title">
-              <input type="text" v-model="formSubreppit.description">
-              <input type="text" v-model="formSubreppit.media_path">
-              <button type="submit">AddSubreppit</button>
+                <label>title</label><br>
+                <input type="text" v-model="formSubreppit.title"><br>
+                <label>description</label><br>
+                <input type="text" v-model="formSubreppit.description"><br>
+                <label>media_path</label><br>
+                <input type="text" v-model="formSubreppit.media_path"><br>
+                <button type="submit">AddSubreppit</button><br><br>
             </form>
             <form @submit.prevent="formDeleteSubreppitSubmission(formDeleteSubreppit.subreppit_id)">
-              <input type="number" v-model="formDeleteSubreppit.subreppit_id">
+              <input type="number" v-model="formDeleteSubreppit.subreppit_id"><br>
               <button type="submit">DeleteSubreppit</button>
             </form>
         </div>
         <div class="div">
+            POSTS<br>
             <button @click="fetchPosts">fetchPosts</button>
-            <button @click="fetchPost9">fetchPost9</button>
-        </div>
-        <div class="div">
+            <button @click="fetchPost9">fetchPost9</button><br>
+            (résultats console)
+            <p></p>
             <form @submit.prevent="formPostSubmission">
-              <input type="text" v-model="formPost.title">
-              <input type="text" v-model="formPost.content">
-              <input type="text" v-model="formPost.media_path">
-              <input type="number" v-model="formPost.user_id">
-              <input type="number" v-model="formPost.subreppit_id">
-              <input type="number" v-model="formPost.likes">
-              <button type="submit">AddPost</button>
+                <label>title</label><br>
+                <input type="text" v-model="formPost.title"><br>
+                <label>content</label><br>
+                <input type="text" v-model="formPost.content"><br>
+                <label>media_path</label><br>
+                <input type="text" v-model="formPost.media_path"><br>
+                <label>user_id</label><br>
+                <input type="number" v-model="formPost.user_id"><br>
+                <label>subreppit_id</label><br>
+                <input type="number" v-model="formPost.subreppit_id"><br>
+                <label>likes</label><br>
+                <input type="number" v-model="formPost.likes"><br>
+                <button type="submit">AddPost</button><br><br>
             </form>
             <form @submit.prevent="formDeletePostSubmission(formDeletePost.post_id)">
-              <input type="number" v-model="formDeletePost.post_id">
-              <button type="submit">DeletePost</button>
+                <label>post_id</label><br>
+                <input type="number" v-model="formDeletePost.post_id"><br>
+                <button type="submit">DeletePost</button>
             </form>
         </div>
         <div class="div">
+            COMMENTS<br>
             <form @submit.prevent="formCommentSubmission">
-              <input type="text" v-model="formComment.title">
-              <input type="text" v-model="formComment.content">
-              <input type="number" v-model="formComment.user_id">
-              <input type="number" v-model="formComment.post_id">
-              <button type="submit">AddComment</button>
+                <label>title</label><br>
+                <input type="text" v-model="formComment.title"><br>
+                <label>content</label><br>
+                <input type="text" v-model="formComment.content"><br>
+                <label>user_id</label><br>
+                <input type="number" v-model="formComment.user_id"><br>
+                <label>post_id</label><br>
+                <input type="number" v-model="formComment.post_id"><br>
+                <button type="submit">AddComment</button><br><br>
             </form>
             <form @submit.prevent="formDeleteCommentSubmission(formDeleteComment.comment_id)">
-              <input type="number" v-model="formDeleteComment.comment_id">
-              <button type="submit">DeleteComment</button>
+                <label>comment_id</label><br>
+                <input type="number" v-model="formDeleteComment.comment_id"><br>
+                <button type="submit">DeleteComment</button>
             </form>
         </div>
     </div>
@@ -283,7 +310,7 @@ const formDeleteCommentSubmission = (async (comment_id) => {
 #container {
     position: absolute;
     left: 100px;
-    display: block;
+    display: flex;
     padding: 10px;
     background-color: bisque;
     /*outline: 1px dashed red;*/
