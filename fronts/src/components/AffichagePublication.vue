@@ -14,30 +14,16 @@
 
   
 <script setup>
-import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-
-const publications = ref([]);
-const loading = ref(true);
-// const props = defineProps(['publication']);
+defineProps(['publications']);
 
 
 const goToPublication = (id) => {
   console.log(id);
   router.push({ name: 'AffichagePublication', params: { id } });
 };
-
-async function fetchData() {
-  const response1 = await fetch('http://127.0.0.1:8000/api/posts');
-  const data = await response1.json();
-  publications.value = data;
-  loading.value = false;
-};
-onMounted(() => {
-  fetchData();
-});
 
 </script>
 

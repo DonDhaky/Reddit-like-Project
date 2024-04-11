@@ -1,17 +1,26 @@
 <script setup>
+import {ref} from 'vue';
+
+const searchQuery = ref('');
+const emit = defineEmits(['search']);
+
+const handleSearch = () => {
+    console.log('Search form submitted'); // Check in the console
+    emit('search', searchQuery.value);
+};
     
 </script>
 
 <template>
     <div class="navbar">
         <div class="title">
-            <a href="#">
+            <a href="home">
                 <img src="/reddit-1.svg" alt="Reppit Icon">
             </a>
         </div>
         <div class="searchbar">
-            <form action="" class="search-bar">
-                <input class="search" type="search" name="search" required placeholder="Subreppit">
+            <form action="" class="search-bar" @submit.prevent="handleSearch">
+                <input class="search" type="search" name="search" required placeholder="Subreppit" v-model="searchQuery">
                 <button class="search-btn" type="submit"><span>Search</span></button>
             </form>
         </div>
