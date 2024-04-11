@@ -6,29 +6,30 @@ const formData = ref({
   login: '',
   email: '',
   password: '',
-  age: ''
+  age: '',
+  is_admin: 0
 });
 
-const ageConfirmed = ref(false);
+const apiUrl = 'http://localhost:8000/api';
 
 const registerUser = async () => {
   try {
-    const response = await fetch('http://localhost:8000/api/users', { // A modifier 
+    const response = await fetch(`${apiUrl}/adduser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        ...formData.value,
-        ageConfirmed: ageConfirmed.value
-      })
+      body: JSON.stringify(formData.value)
     });
 
+    const data = await response.json();
+    console.log(data);
     if (!response.ok) {
-      throw new Error('Erreur lors de l\'inscription.');
+      throw new Error("Erreur lors de l'inscription.");
     }
-
-    window.location.href = '/my-account';
+    
+    console.log('Utilisateur inscrit avec succès')
+    window.location.href = 'http://localhost:5173/';
   } 
   
   catch (error) {
@@ -56,7 +57,7 @@ const registerUser = async () => {
         <label for="age">Âge :</label>
         <input type="number" id="age" v-model="formData.age" required class="input-field">
         
-        <input type="checkbox" id="ageConfirmation" v-model="ageConfirmed" required>
+        <input type="checkbox" id="ageConfirmation" required>
         <label for="ageConfirmation">Je certifie sur l'honneur avoir plus de 13 ans.</label>
         
         <button type="submit" class="btn">S'inscrire</button>

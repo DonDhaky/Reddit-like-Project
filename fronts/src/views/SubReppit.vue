@@ -7,6 +7,13 @@ const editNote = () => {
     // console.log('test')
     router.push({ name:'registration'})
 };
+const loginFunction = () => {
+    // console.log('test')
+    router.push({ name:'login'})
+};
+const logoutFunction = () => {
+    // RUN UNE FONCTION POUR TUER COOKIE
+};
 
 const subreppits = ref([
   {
@@ -38,6 +45,8 @@ const subreppits = ref([
     <div class="leftmenu">
         <div class="login">
                 <button class="btnlogin" @click="editNote">Register</button>
+                <button class="btnlogin" @click="loginFunction">Login</button>
+                <button class="btnlogin" @click="logoutFunction">Logout</button>
         </div>
         <div class="Menu">
                 <ul class="divsubreppit">

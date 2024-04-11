@@ -45,6 +45,7 @@ const formUser = ref({
   age: '13',
   is_admin: 0
 });
+
 const formUserSubmission = (async () => {
   try {
     const response = await fetch(`${apiUrl}/adduser`, {
@@ -54,6 +55,7 @@ const formUserSubmission = (async () => {
       },
       body: JSON.stringify(formUser.value),
     });
+    
     const data = await response.json();
     console.log(data);
   } catch (error) {
