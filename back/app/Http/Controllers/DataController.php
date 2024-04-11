@@ -70,6 +70,22 @@ class DataController extends Controller
         return response()->json(['message' => 'User submitted']);
 
     }
+    // User PUT Method
+    public function updateUser(Request $rq, $id) {
+
+        $newData = User::find($id);
+        $newData->name = $rq->name;
+        $newData->login = $rq->login;
+        $newData->email = $rq->email;
+        $newData->password = $rq->password;
+        //$newData->pasword_confirmation = $rq->password_confirmation;
+        $newData->age = $rq->age;
+        $newData->is_admin = $rq->is_admin;
+        $newData->save();
+
+        return response()->json(['message' => 'User updated']);
+
+    }
     // User DELETE Method
     public function deleteUser($user_id) {
         $user = User::findOrFail($user_id);
@@ -88,6 +104,18 @@ class DataController extends Controller
         $newData->save();
 
         return response()->json(['message' => 'Subreppit submitted']);
+
+    }
+    // Subreppit UPDATE method
+    public function updateSubreppit(Request $rq, $id) {
+
+        $newData = Subreppit::find($id);
+        $newData->title = $rq->title;
+        $newData->description = $rq->description;
+        $newData->media_path = $rq->media_path;
+        $newData->save();
+
+        return response()->json(['message' => 'Subreppit updated']);
 
     }
     // Subreppit DELETE Method
@@ -111,6 +139,21 @@ class DataController extends Controller
         $newData->save();
 
         return response()->json(['message' => 'Post submitted']);
+
+    }
+    // Post UPDATE method
+    public function updatePost(Request $rq, $id) {
+
+        $newData = Post::find($id);
+        $newData->title = $rq->title;
+        $newData->content = $rq->content;
+        $newData->media_path = $rq->media_path;
+        $newData->user_id = $rq->user_id;
+        $newData->subreppit_id = $rq->subreppit_id;
+        $newData->likes = $rq->likes;
+        $newData->save();
+
+        return response()->json(['message' => 'Post updated']);
 
     }
     // Post DELETE Method
