@@ -17,7 +17,6 @@
         <!-- Add your interaction elements here -->
       </div>
     </div>
-    </div>
   </div>
 </template>
 
