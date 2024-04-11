@@ -15,6 +15,7 @@ class CommentController extends Controller
         $comment->content = $rq->content;
         $comment->user_id = $rq->user_id;
         $comment->post_id = $rq->post_id;
+        $comment->childrencomments_ids = $rq->childrencomments_ids;
         $comment->parentcomment_id = $rq->parentcomment_id;
         $comment->save();
 
@@ -42,6 +43,7 @@ class CommentController extends Controller
         $comment->content = $rq->content;
         $comment->user_id = $rq->user_id;
         $comment->post_id = $rq->post_id;
+        $comment->childrencomments_ids = $rq->childrencomments_ids;
         $comment->parentcomment_id = $rq->parentcomment_id;
         $comment->update();
 

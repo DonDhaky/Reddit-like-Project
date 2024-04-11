@@ -16,13 +16,21 @@ use App\Http\Controllers\DataController;
 */
 
 Route::get('/users', [DataController::class, 'getDataFromUsers']);
-Route::get('/profile/{id}', [DataController::class, 'getDataFromUserId']);
+Route::get('/user/{id}', [DataController::class, 'getDataFromUserId']);
+Route::post('/adduser', [DataController::class, 'addUser']);
+Route::delete('/deleteuser/{id}', [DataController::class, 'deleteUser']);
 Route::get('/subreppits', [DataController::class, 'getDataFromSubreppits']);
 Route::get('/subreppit/{id}', [DataController::class, 'getDataFromSubreppitId']);
+Route::post('/addsubreppit', [DataController::class, 'addSubreppit']);
+Route::delete('/deletesubreppit/{id}', [DataController::class, 'deleteSubreppit']);
 Route::get('/posts', [DataController::class, 'getDataFromPosts']);
 Route::get('/post/{id}', [DataController::class, 'getDataFromPostId']);
+Route::post('/addpost', [DataController::class, 'addPost']);
+Route::delete('/deletepost/{id}', [DataController::class, 'deletePost']);
 Route::get('/comments', [DataController::class, 'getDataFromComments']);
 Route::get('/comment/{id}', [DataController::class, 'getDataFromCommentId']);
+Route::post('/addcomment', [DataController::class, 'addComment']);
+Route::delete('/deletecomment/{id}', [DataController::class, 'deleteComment']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
