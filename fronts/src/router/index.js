@@ -8,6 +8,7 @@ import UserAccountPage from '@/views/UserAccountPage.vue'
 import Navbar from '@/views/NavBar.vue'
 import HomePage from '@/views/HomePage.vue'
 import PublicationDetails from '@/components/PublicationDetails.vue'
+import SubreppitPosts from '@/views/SubreppitPosts.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,9 +43,14 @@ const router = createRouter({
     {
       path: '/my-account',
       component: UserAccountPage
+    },
+
+    {
+      path: '/subreppits/:id/posts',
+      name: 'subreppit-posts',
+      component: SubreppitPosts,
+      props: true // permet de transmettre les paramètres de l'URL comme props au composant SubreppitPosts
     }
-
-
   ]
 });
 
