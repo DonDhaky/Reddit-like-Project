@@ -27,6 +27,8 @@ Route::post('/adduser', [DataController::class, 'addUser']);
 Route::put('/updateuser/{id}', [DataController::class, 'updateUser']);
 Route::delete('/deleteuser/{id}', [DataController::class, 'deleteUser']);
 Route::put('/updateuser/{id}', [DataController::class, 'updateUser']);
+Route::middleware('auth:sanctum')->get('/current-user', [DataController::class, 'getCurrentUserData']);
+
 
 
 // SUBREPPITS
