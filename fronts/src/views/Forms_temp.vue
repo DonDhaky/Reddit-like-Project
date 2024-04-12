@@ -48,6 +48,11 @@ const formUser = ref({
   is_admin: 0
 });
 const formUserSubmission = (async () => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être admin pour faire ça ici.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/adduser`, {
       method: 'POST',
@@ -89,6 +94,11 @@ const getUserData = (async (user_id) => {
         });
 });
 const formUpdateUserSubmission = (async (user_id) => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy et admin pour faire ça aux autres users.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/updateuser/${user_id}`, {
       method: 'PUT',
@@ -109,6 +119,11 @@ const formDeleteUser = ref({
     user_id: 6
 });
 const formDeleteUserSubmission = (async (user_id) => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy et être admin pour faire ça ici.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/deleteuser/${user_id}`, {
       method: 'DELETE',
@@ -133,6 +148,11 @@ const formSubreppit = ref({
   media_path: 'https://media-eu.husse.com/media/19/41/b5/1655383250/accueillir-chaton-husse.webp'
 });
 const formSubreppitSubmission = (async () => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/addsubreppit`, {
       method: 'POST',
@@ -168,6 +188,11 @@ const getSubreppitData = (async (subreppit_id) => {
         });
 });
 const formUpdateSubreppitSubmission = (async (subreppit_id) => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/updatesubreppit/${subreppit_id}`, {
       method: 'PUT',
@@ -188,6 +213,11 @@ const formDeleteSubreppit = ref({
   subreppit_id: 6
 });
 const formDeleteSubreppitSubmission = (async (subreppit_id) => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/deletesubreppit/${subreppit_id}`, {
       method: 'DELETE',
@@ -214,6 +244,11 @@ const formPost = ref({
   likes: 0
 });
 const formPostSubmission = (async () => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/addpost`, {
       method: 'POST',
@@ -252,6 +287,11 @@ const getPostData = (async (post_id) => {
         });
 });
 const formUpdatePostSubmission = (async (post_id) => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/updatepost/${post_id}`, {
       method: 'PUT',
@@ -272,6 +312,11 @@ const formDeletePost = ref({
   post_id: 18
 });
 const formDeletePostSubmission = (async (post_id) => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/deletepost/${post_id}`, {
       method: 'DELETE',
@@ -294,6 +339,11 @@ const formComment = ref({
   post_id: 1
 });
 const formCommentSubmission = (async () => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/addcomment`, {
       method: 'POST',
@@ -313,6 +363,11 @@ const formDeleteComment = ref({
   comment_id: 1
 });
 const formDeleteCommentSubmission = (async (comment_id) => {
+  const token = getCookie('token');
+  if (!token) {
+    alert('Il faut être connecteyyy pour faire ça.');
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/deletecomment/${comment_id}`, {
       method: 'DELETE',
@@ -326,6 +381,13 @@ const formDeleteCommentSubmission = (async (comment_id) => {
     console.error(JSON.stringify('Error:', error));
   }
 });
+
+// VERIFICATION DE L'EXISTENCE D'UN COOKIE SELON SON NOM
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
 </script>
 

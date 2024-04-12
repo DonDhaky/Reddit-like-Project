@@ -8,47 +8,49 @@ const editing = ref(false);
 
 const fetchUserProfile = async () => {
   loading.value = true;
-  try {
+  
+    const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
+    
 
-    const userId = localStorage.getItem('userId');
-
-    const response = await fetch(`http://127.0.0.1:8000/api/user/${userId}`, { // API a modifier
+    const response = await fetch(`http://127.0.0.1:8000/api/current-user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // Est ce qu'il faut ajouter des éléments d'authentification ??
-        
+        'Authorization': `Bearer ${token}`
       }
     });
-    if (!response.ok) {
-      throw new Error('Ce profil n\'existe pas.');
-    }
+
     user.value = await response.json();
-  } catch (err) {
-    error.value = err.message;
-  } finally {
-    loading.value = false;
-  }
 };
+
+
 
 const updateProfile = async () => {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/api/user/${user.value.id}`, {
+    const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
+    if (!token) {
+      throw new Error('Token non trouvé.');
+    }
+
+    const response = await fetch(`http://127.0.0.1:8000/api/user`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        // Est ce qu'il faut ajouter des éléments d'authentification ??
-    },
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify(user.value)
     });
+
     if (!response.ok) {
       throw new Error('Le profil n\'a pas pu être mis à jour.');
     }
+
     editing.value = false;
   } catch (err) {
     error.value = err.message;
   }
 };
+
 
 const editProfile = () => {
   editing.value = true;
@@ -104,7 +106,7 @@ onMounted(fetchUserProfile);
             <button @click="deleteAccount">Supprimer mon compte</button>
           </div>
           <div v-else>
-            <div>
+            <div v-if = user>
               <p><strong>Login:</strong> {{ user.login }}</p>
               <p><strong>E-mail:</strong> {{ user.email }}</p>
             </div>

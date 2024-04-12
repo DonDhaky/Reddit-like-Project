@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Models\User;
 use App\Models\Subreppit;
 use App\Models\Post;
 use App\Models\Comment;
+
 
 class DataController extends Controller
 {
@@ -197,6 +200,11 @@ class DataController extends Controller
         $comment = Comment::findOrFail($comment_id);
         $comment->delete();
         return response()->json(['message' => 'Comment deleted']);
+    }
+
+    public function getCurrentUserData() {
+        $user = Auth::user();
+        return response()->json($user);
     }
 
 }
