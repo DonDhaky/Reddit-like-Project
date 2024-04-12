@@ -24,6 +24,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/users', [DataController::class, 'getDataFromUsers']);
 Route::get('/user/{id}', [DataController::class, 'getDataFromUserId']);
 Route::post('/adduser', [DataController::class, 'addUser']);
+Route::put('/updateuser/{id}', [DataController::class, 'updateUser']);
 Route::delete('/deleteuser/{id}', [DataController::class, 'deleteUser']);
 Route::put('/updateuser/{id}', [DataController::class, 'updateUser']);
 
@@ -32,6 +33,7 @@ Route::put('/updateuser/{id}', [DataController::class, 'updateUser']);
 Route::get('/subreppits', [DataController::class, 'getDataFromSubreppits']);
 Route::get('/subreppit/{id}', [DataController::class, 'getDataFromSubreppitId']);
 Route::post('/addsubreppit', [DataController::class, 'addSubreppit']);
+Route::put('/updatesubreppit/{id}', [DataController::class, 'updateSubreppit']);
 Route::delete('/deletesubreppit/{id}', [DataController::class, 'deleteSubreppit']);
 Route::put('/updatesubreppit/{id}', [DataController::class, 'updateSubreppit']);
 
@@ -40,6 +42,7 @@ Route::put('/updatesubreppit/{id}', [DataController::class, 'updateSubreppit']);
 Route::get('/posts', [DataController::class, 'getDataFromPosts']);
 Route::get('/post/{id}', [DataController::class, 'getDataFromPostId']);
 Route::post('/addpost', [DataController::class, 'addPost']);
+Route::put('/updatepost/{id}', [DataController::class, 'updatePost']);
 Route::delete('/deletepost/{id}', [DataController::class, 'deletePost']);
 Route::put('/updatepost/{id}', [DataController::class, 'updatePost']);
 

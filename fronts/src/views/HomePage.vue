@@ -46,10 +46,6 @@ onMounted(() => {
     <div id="app">
       <button @click="temp = !temp">Forms</button>
       <FormsTemp v-if="temp"/>
-      <!-- <NavBar/> -->
-      <!-- <AffichagePublicationView/> -->
-      <!-- <AffichagePublication/> -->
-      <!-- <SubReppit/> -->
 
         <NavBar @search="handleSearch"/>
         <div class="container">
@@ -72,6 +68,6 @@ onMounted(() => {
 }
 
 .content {
-  flex: 1; /* This will make the content div take up the remaining space */
+  flex: 1;
 }
 </style>
