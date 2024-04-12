@@ -2,6 +2,15 @@
 import {ref, onMounted, computed} from 'vue';
 import NavBar from "@/views/NavBar.vue"
 import SubReppit from "./SubReppit.vue";
+
+
+////////////////////////////////////////
+import FormsTemp from "./Forms_temp.vue";
+const temp = ref(false);
+////////////////////////////////////////
+
+// import AffichagePublicationView from "./AffichagePublicationView.vue";
+
 import AffichagePublication from "@/components/AffichagePublication.vue";
 
 const publications = ref([]);
@@ -35,6 +44,13 @@ onMounted(() => {
 
 <template>
     <div id="app">
+      <button @click="temp = !temp">Forms</button>
+      <FormsTemp v-if="temp"/>
+      <NavBar/>
+      <!-- <AffichagePublicationView/> -->
+      <AffichagePublication/>
+      <SubReppit/>
+
         <NavBar @search="handleSearch"/>
         <div class="container">
             <SubReppit/>

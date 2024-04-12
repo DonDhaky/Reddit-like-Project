@@ -37,11 +37,13 @@ const router = createRouter({
 
     {
       path: '/login',
+      name: 'login',
       component: LoginPage
     },
 
     {
       path: '/my-account',
+      name: 'myaccount',
       component: UserAccountPage
     },
 
