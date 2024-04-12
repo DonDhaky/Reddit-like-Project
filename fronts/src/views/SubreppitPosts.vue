@@ -1,3 +1,4 @@
+
 <template>
   <div class="publication-details" v-if="posts">
     <div class="publication-content">
@@ -23,13 +24,13 @@
   <script setup>
   import { ref, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
-import { post } from 'wpapi/lib/http-transport';
+// import { post } from 'wpapi/lib/http-transport';
   
   const route = useRoute();
   const subreppitId = Number(route.params.id);
-  const subreppitTitle = ref('');
+  // const subreppitTitle = ref('');
   const posts = ref([]);
-  const loading = ref(true);
+  // const loading = ref(true);
   
   async function fetchSubreppitPosts(subreppitId) {
     const response = await fetch(`http://127.0.0.1:8000/api/subreppit/${subreppitId}`);

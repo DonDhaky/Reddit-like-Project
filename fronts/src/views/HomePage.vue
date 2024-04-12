@@ -46,10 +46,10 @@ onMounted(() => {
     <div id="app">
       <button @click="temp = !temp">Forms</button>
       <FormsTemp v-if="temp"/>
-      <NavBar/>
+      <!-- <NavBar/> -->
       <!-- <AffichagePublicationView/> -->
-      <AffichagePublication/>
-      <SubReppit/>
+      <!-- <AffichagePublication/> -->
+      <!-- <SubReppit/> -->
 
         <NavBar @search="handleSearch"/>
         <div class="container">

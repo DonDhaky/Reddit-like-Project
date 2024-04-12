@@ -56,11 +56,6 @@ const logoutFunction = () => {
 // };
 // reppits();
 
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
 const subreppits = ref([]);
 const loading = ref(true);
 
@@ -74,15 +69,16 @@ async function fetchData() {
   const data = await response.json();
   subreppits.value = data;
   loading.value = false;
+  console.log('Tests', subreppits.value)
 };
 
 onMounted(() => {
   fetchData();
 });
 
-function Register() {
-    console.log('SIuu')
-}
+// function Register() {
+//     console.log('SIuu')
+// }
 </script>
 
 <template>
@@ -95,7 +91,7 @@ function Register() {
         </div>
         <div class="Menu">
                 <ul class="divsubreppit">
-                    <li class="subreppit" v-for="subreppit in subreppits" :key="subreppit.id">{{ subreppit.titre }}</li>
+                    <li class="subreppit" v-for="subreppit in subreppits" :key="subreppit.id" @click="goToSubreppit(subreppit.id)">{{ subreppit.title }}</li>
                 </ul>
         </div>
         <div class="subMenu">
@@ -114,20 +110,6 @@ function Register() {
         </div>
     </div>
 </template>
-
-// <template>
-//     <div class="leftmenu">
-//         <div class="login">
-//                 <button class="btnlogin" @click="Register">Register</button>
-//         </div>
-//         <div class="Menu">
-//                 <ul class="divsubreppit">
-//                     <li class="subreppit" v-for="subreppit in subreppits" :key="subreppit.id" @click="goToSubreppit(subreppit.id)">{{ subreppit.title }}</li>
-//                 </ul>
-//         </div>
-//         
-//     </div>
-// </template> 
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
