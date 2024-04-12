@@ -1,11 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\SubreppitController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\DataController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +17,15 @@ use App\Http\Controllers\DataController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/data', [DataController::class, 'index']);
-Route::get('/addusertest', [UserController::class, 'addUserTest']);
-Route::get('/addsubreppittest', [SubreppitController::class, 'addSubreppitTest']);
-Route::get('/addposttest', [PostController::class, 'addPostTest']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

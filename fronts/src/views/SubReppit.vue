@@ -1,27 +1,51 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
+const token = ref(null);
+
+onMounted(() => {
+  const cookies = document.cookie.split(';')
+  cookies.forEach((cookie) => {
+    const [name, value] = cookie.split('=')
+    if (name.trim() === 'token') {
+      token.value = value
+    }
+  })
+});
 
 const router = useRouter();
 const editNote = () => {
-    // console.log('test')
     router.push({ name:'registration'})
 };
+const loginFunction = () => {
+    router.push({ name:'login'})
+};
+const goProfile = () => {
+    router.push({ name:'myaccount'})
+};
+const logoutFunction = () => {
+  
+    document.cookie = `token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+    confirm('Vous êtes bien déconnecté(e) !');
+    window.location.href = 'http://localhost:5173/';
+};
 
-const subreppits = ref([
-  {
-    id: 1,
-    titre: "Funny",
-  },
-  {
-    id: 2,
-    titre: "Gaming",
-  },
-  {
-    id: 3,
-    titre: "Bridou",
-  }
-]);
+
+// const subreppits = ref([
+//   {
+//     id: 1,
+//     titre: "Funny",
+//   },
+//   {
+//     id: 2,
+//     titre: "Gaming",
+//   },
+//   {
+//     id: 3,
+//     titre: "Bridou",
+//   }
+// ]);
 
 // const apiUrl = "http://localhost/api";
 
@@ -32,16 +56,42 @@ const subreppits = ref([
 // };
 // reppits();
 
+const subreppits = ref([]);
+const loading = ref(true);
+
+const goToSubreppit = (id) => {
+  router.push({ name: 'subreppit-posts', params: { id } });
+};
+
+
+async function fetchData() {
+  const response = await fetch('http://127.0.0.1:8000/api/subreppits');
+  const data = await response.json();
+  subreppits.value = data;
+  loading.value = false;
+  console.log('Tests', subreppits.value)
+};
+
+onMounted(() => {
+  fetchData();
+});
+
+// function Register() {
+//     console.log('SIuu')
+// }
 </script>
 
 <template>
     <div class="leftmenu">
         <div class="login">
-                <button class="btnlogin" @click="editNote">Register</button>
+                <button v-if="!token" class="btnlogin" @click="editNote">Register</button>
+                <button v-if="!token" class="btnlogin" @click="loginFunction">Login</button>
+                <button v-if="token" class="btnlogin" @click="logoutFunction">Logout</button>
+                <button v-if="token" class="btnlogin" @click="goProfile">Profile</button>
         </div>
         <div class="Menu">
                 <ul class="divsubreppit">
-                    <li class="subreppit" v-for="subreppit in subreppits" :key="subreppit.id">{{ subreppit.titre }}</li>
+                    <li class="subreppit" v-for="subreppit in subreppits" :key="subreppit.id" @click="goToSubreppit(subreppit.id)">{{ subreppit.title }}</li>
                 </ul>
         </div>
         <div class="subMenu">
@@ -72,12 +122,10 @@ const subreppits = ref([
 
 .leftmenu{
     width: 200px;
+    position: relative;
     
 }
 .login{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -131,10 +179,12 @@ const subreppits = ref([
 }
 
 .subMenu{
+    position: absolute;
+    margin-top: 100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100vh;
     height: 20%;
     font-family: 'Poppins';
 }
@@ -142,15 +192,38 @@ const subreppits = ref([
 .subMenu > div{
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 5px auto;
+    width: 80%;
+    padding: 0;
+    background-color: #FAFAFA;
+    border: solid 1px #808080;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0.2px rgba(64, 64, 64, 0.78)
 }
 
 .subMenu > div svg{
-    margin-right: 10px;
+    margin: 10px;
 }
 
 .subMenu > div a{
     text-decoration: none;
     color: black;
+    text-decoration: none;
+    list-style-type: none;
+    text-align: center;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    background-color: #B8B8B8;
+    border: solid 1px #808080;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+.subMenu > div a:hover{
+    background-color: #FF4500;
+    color: #FAFAFA;
+    cursor: pointer;
 }
 </style>

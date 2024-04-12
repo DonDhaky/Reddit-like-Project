@@ -82,7 +82,7 @@ const getUserData = (async (user_id) => {
         }).then(function(json){
             console.log('GET getUserData response:', json.name);
             formUpdateUser.value = json;
-            console.log('formUpdateUser.name:', formUpdateUser.name);
+            console.log('formUpdateUser.name:', formUpdateUser.value.name);
         })
          .catch(function(error){
             console.error(JSON.stringify('Error:', error));
@@ -495,6 +495,7 @@ const formDeleteCommentSubmission = (async (comment_id) => {
     font-size: smaller;
     background-color: bisque;
     /*outline: 1px dashed red;*/
+    z-index: 1;
 }
 
 .div {

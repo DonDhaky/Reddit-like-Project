@@ -8,7 +8,7 @@ const formData = ref({
 
 const loginUser = async () => {
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/auth/login', { 
+    const response = await fetch('http://127.0.0.1:8000/api/login', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -17,14 +17,15 @@ const loginUser = async () => {
     });
 
     if (!response.ok) {
+      alert('Identifiant et/ou mot de passe incorrects.');
       throw new Error('Identifiant et/ou mot de passe incorrects.');
     }
 
     const { token } = await response.json();
     document.cookie = `token=${token};path=/`;
 
-
-    window.location.href = '/';
+    confirm('Vous êtes bien connecté(e) sheguey !');
+    window.location.href = 'http://localhost:5173/';
   } 
   
   catch (error) {
@@ -32,29 +33,29 @@ const loginUser = async () => {
   }
 };
 
-const logoutUser = async () => {
-  try {
-    document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
+// const logoutUser = async () => {
+//   try {
+//     document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
 
-    const response = await fetch('http://127.0.0.1:8000/api/auth/logout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+//     const response = await fetch('http://127.0.0.1:8000/api/auth/logout', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     });
 
-    if (!response.ok) {
-      throw new Error('Erreur lors de la déconnexion.');
-    }
+//     if (!response.ok) {
+//       throw new Error('Erreur lors de la déconnexion.');
+//     }
 
-    window.location.href = '/login';
-  } 
+//     window.location.href = '/login';
+//   } 
   
-  catch (error) 
-  {
-    console.error(error);
-  }
-};
+//   catch (error) 
+//   {
+//     console.error(error);
+//   }
+// };
 </script>
 
 <template>
