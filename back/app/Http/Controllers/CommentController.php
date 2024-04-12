@@ -8,7 +8,6 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
-//title content user_id post_id parentcomment_id
     public function createPost(Request $rq) {
         $comment = new Comment();
         $comment->title = $rq->title;
@@ -63,5 +62,4 @@ class CommentController extends Controller
 
         return redirect('/')->with('status', 'Comment deleted');
     }
-
 }
