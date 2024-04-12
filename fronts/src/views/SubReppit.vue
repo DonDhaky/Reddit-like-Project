@@ -55,13 +55,17 @@ async function fetchData() {
 onMounted(() => {
   fetchData();
 });
+
+function Register() {
+    console.log('SIuu')
+}
 </script>
 
 
  <template>
      <div class="leftmenu">
          <div class="login">
-                 <button class="btnlogin" @click="editNote">Register</button>
+                 <button class="btnlogin" @click="Register">Register</button>
          </div>
          <div class="Menu">
                  <ul class="divsubreppit">
