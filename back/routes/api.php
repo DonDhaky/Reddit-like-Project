@@ -24,25 +24,31 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/users', [DataController::class, 'getDataFromUsers']);
 Route::get('/user/{id}', [DataController::class, 'getDataFromUserId']);
 Route::post('/adduser', [DataController::class, 'addUser']);
-Route::middleware('auth:api')->delete('/deleteuser/{id}', [DataController::class, 'deleteUser']);
+Route::delete('/deleteuser/{id}', [DataController::class, 'deleteUser']);
+Route::put('/updateuser/{id}', [DataController::class, 'updateUser']);
+
 
 // SUBREPPITS
 Route::get('/subreppits', [DataController::class, 'getDataFromSubreppits']);
 Route::get('/subreppit/{id}', [DataController::class, 'getDataFromSubreppitId']);
-Route::middleware('auth:api')->post('/addsubreppit', [DataController::class, 'addSubreppit']);
-Route::middleware('auth:api')->delete('/deletesubreppit/{id}', [DataController::class, 'deleteSubreppit']);
+Route::post('/addsubreppit', [DataController::class, 'addSubreppit']);
+Route::delete('/deletesubreppit/{id}', [DataController::class, 'deleteSubreppit']);
+Route::put('/updatesubreppit/{id}', [DataController::class, 'updateSubreppit']);
+
 
 // POSTS
 Route::get('/posts', [DataController::class, 'getDataFromPosts']);
 Route::get('/post/{id}', [DataController::class, 'getDataFromPostId']);
-Route::middleware('auth:api')->post('/addpost', [DataController::class, 'addPost']);
-Route::middleware('auth:api')->delete('/deletepost/{id}', [DataController::class, 'deletePost']);
+Route::post('/addpost', [DataController::class, 'addPost']);
+Route::delete('/deletepost/{id}', [DataController::class, 'deletePost']);
+Route::put('/updatepost/{id}', [DataController::class, 'updatePost']);
+
 
 // COMMENTS
 Route::get('/comments', [DataController::class, 'getDataFromComments']);
 Route::get('/comment/{id}', [DataController::class, 'getDataFromCommentId']);
-Route::middleware('auth:api')->post('/addcomment', [DataController::class, 'addComment']);
-Route::middleware('auth:api')->delete('/deletecomment/{id}', [DataController::class, 'deleteComment']);
+Route::post('/addcomment', [DataController::class, 'addComment']);
+Route::delete('/deletecomment/{id}', [DataController::class, 'deleteComment']);
 
 // LOGIN
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
